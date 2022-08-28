@@ -887,44 +887,46 @@ local highlight_groups = {
 	TSVariableBuiltin = 'Identifier',
 
 	--[[ 4.4.9. barbar.nvim ]]
-	BufferCurrent       = 'TabLineSel',
-	BufferCurrentIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferCurrent.bg} end,
-	BufferCurrentMod    = {fg=tan, bg=black, style='bold'},
-	BufferCurrentSign   = 'HintMsg',
-	BufferCurrentTarget = 'BufferCurrentSign',
+	-- BufferCurrent       = 'TabLineSel',
+	-- BufferCurrentIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferCurrent.bg} end,
+	-- BufferCurrentMod    = {fg=tan, bg=black, style='bold'},
+	-- BufferCurrentSign   = 'HintMsg',
+	-- BufferCurrentTarget = 'BufferCurrentSign',
 
-	BufferInactive       = 'BufferVisible',
-	BufferInactiveIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferInactive.bg} end,
-	BufferInactiveMod    = 'BufferVisibleMod',
-	BufferInactiveSign   = 'BufferVisibleSign',
-	BufferInactiveTarget = 'BufferVisibleTarget',
+	-- BufferInactive       = 'BufferVisible',
+	-- BufferInactiveIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferInactive.bg} end,
+	-- BufferInactiveMod    = 'BufferVisibleMod',
+	-- BufferInactiveSign   = 'BufferVisibleSign',
+	-- BufferInactiveTarget = 'BufferVisibleTarget',
 
-	BufferTabpages    = {fg=BG, bg=FG, style='bold'},
-	BufferTabpageFill = 'TabLineFill',
+	-- BufferTabpages    = {fg=BG, bg=FG, style='bold'},
+	-- BufferTabpageFill = 'TabLineFill',
 
-	BufferVisible       = 'TabLine',
-	BufferVisibleIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferVisible.bg} end,
-	BufferVisibleMod    = {fg=white, bg=gray_da rker, style='italic'},
-	BufferVisibleSign   = 'BufferVisible',
-	BufferVisibleTarget = function(self)
-		local super = self.BufferVisibleMod
-		return {fg=super.fg, bg=super.bg, style='bold'}
-	end,
+	-- BufferVisible       = 'TabLine',
+	-- BufferVisibleIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferVisible.bg} end,
+	-- BufferVisibleMod    = {fg=white, bg=gray_da rker, style='italic'},
+	-- BufferVisibleSign   = 'BufferVisible',
+	-- BufferVisibleTarget = function(self)
+	-- 	local super = self.BufferVisibleMod
+	-- 	return {fg=super.fg, bg=super.bg, style='bold'}
+	-- end,
 
 	--[[ 4.4.15. todo-comments.nvim ]]
-	TodoFgFIX = function(self) return {fg = self.ErrorMsg.fg} end,
+	TodoFgFIX  = function(self) return {fg = self.ErrorMsg.fg} end,
 	TodoFgHACK = function(self) return {fg = self.Todo.bg} end,
 	TodoFgNOTE = 'HintMsg',
+	TodoFgXXX  = 'HintMsg',
 	TodoFgPERF = 'InfoMsg',
 	TodoFgTODO = {fg = cyan, style = 'italic'},
 	TodoFgWARN = function(self) return {fg = self.WarningMsg.fg} end,
 
-	TodoBgFIX = function(self) return {fg = black, bg = self.ErrorMsg.fg, style = {'bold', 'italic', 'nocombine'}} end,
-	TodoBgHACK = function(self) return {fg = black, bg = self.Todo.bg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgFIX  = function(self) return {fg = black, bg = self.ErrorMsg.fg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgHACK = {fg = black, bg = dslight1, style = {'bold', 'italic', 'nocombine'}},
 	TodoBgNOTE = function(self) return {fg = black, bg = self.Hint.bg, style = {'bold', 'italic', 'nocombine'}} end,
 	TodoBgPERF = function(self) return {fg = black, bg = self.Info.bg, style = {'bold', 'italic', 'nocombine'}} end,
 	TodoBgTODO = {fg = black, bg = cyan, style = {'bold', 'italic', 'nocombine'}},
 	TodoBgWARN = function(self) return {fg = black, bg = self.Warning.bg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgXXX  = {fg = black, bg = "#F6C6EA", style = {'bold', 'italic', 'nocombine'}},
 
 	TodoSignFIX  = 'TodoFgFIX',
 	TodoSignHACK = 'TodoFgHACK',
@@ -932,6 +934,7 @@ local highlight_groups = {
 	TodoSignPERF = 'TodoFgPERF',
 	TodoSignTODO = 'TodoFgTODO',
 	TodoSignWARN = 'TodoFgWARN',
+	TodoSignXXX  = 'TodoFgXXX',
 
 		--[[ 4.4.14. trouble.nvim ]]
 		TroubleCount = function(self) return vim.tbl_extend('force', self.Number, {style = 'underline'}) end,
