@@ -1,4 +1,3 @@
-lua << EOF
 -- This file should be edited by the user. Read the instructions of each section and then edit them as desired.
 
 --[[ Highlite, a Neovim colorscheme template.
@@ -383,13 +382,34 @@ local highlight_groups = {
 
 	--[[ 4.2.10. Messages]]
 	ErrorMsg   = {fg=red,          style='bold'},
-	-- HintMsg    = {fg=magenta,      style='bold'},
+	HintMsg    = {fg=magenta,      style='bold'},
 	InfoMsg    = {fg=green},
 	ModeMsg    = {fg=yellow},
-	WarningMsg = {fg=orange},
+	WarningMsg = {fg=orange, style = 'bold'},
 	Question   = {fg=orange_light, style='underline'},
 
 	--[[ 4.2.11. LSP ]]
+	DiagnosticError = 'Error',
+	DiagnosticFloatingError = 'ErrorMsg',
+	DiagnosticSignError = 'DiagnosticFloatingError',
+
+	DiagnosticWarn = 'Warning',
+	DiagnosticFloatingWarn = 'WarningMsg',
+	DiagnosticSignWarn = 'DiagnosticFloatingWarn',
+
+	DiagnosticHint = 'Hint',
+	DiagnosticFloatingHint = 'HintMsg',
+	DiagnosticSignHint = 'DiagnosticFloatingHint',
+
+	DiagnosticInfo = 'Info',
+	DiagnosticFloatingInfo = 'InfoMsg',
+	DiagnosticSignInfo = 'DiagnosticFloatingInfo',
+
+	DiagnosticUnderlineError = {style = {'undercurl', color = red}},
+	DiagnosticUnderlineHint  = {style = {'undercurl', color = magenta}},
+	DiagnosticUnderlineInfo  = {style = {'undercurl', color = pink_light}},
+	DiagnosticUnderlineWarn = {style = {'undercurl', color = orange}},
+
 	LspDiagnosticsError = 'Error',
 	LspDiagnosticsErrorFloating = 'ErrorMsg',
 	LspDiagnosticsErrorSign = 'ErrorMsg',
@@ -798,6 +818,13 @@ local highlight_groups = {
 	helpSectionDelim = 'Delimiter',
 	helpHyperTextJump = 'Underlined',
 
+		--[[ 4.3.39 Rust ]]
+		rustAssert = 'Debug',
+		rustCharacterDelimiter = 'rustNoise',
+		rustIdentifier = 'Identifier',
+		rustStaticLifetime = 'rustStorage',
+		rustStringDelimiter = 'rustNoise',
+
 	--[[ 4.4. Plugins
 		Everything in this section is OPTIONAL. Feel free to remove everything
 		here if you don't want to define it, or add more if there's something
@@ -821,7 +848,7 @@ local highlight_groups = {
 	EasyMotion = 'IncSearch',
 	JumpMotion = 'EasyMotion',
 
-	--[[ 4.4.4. vim-gitgutter / vim-signify ]]
+	--[[ 4.4.4. vim-gitgutter / vim-signify  / gitsigns.nvim ]]
 	GitGutterAdd          = {fg=green},
 	GitGutterChange       = {fg=yellow},
 	GitGutterDelete       = {fg=red},
@@ -831,6 +858,10 @@ local highlight_groups = {
 	SignifySignChange = 'GitGutterChange',
 	SignifySignDelete = 'GitGutterDelete',
 	SignifySignChangeDelete = 'GitGutterChangeDelete',
+
+	GitSignsAdd = 'GitGutterAdd',
+	GitSignsChange = 'GitGutterChange',
+	GitSignsDelete = 'GitGutterDelete',
 
 	--[[ 4.4.5. vim-indent-guides ]]
 	IndentGuidesOdd  = {bg=gray_darker},
@@ -880,6 +911,41 @@ local highlight_groups = {
 		return {fg=super.fg, bg=super.bg, style='bold'}
 	end,
 
+	--[[ 4.4.15. todo-comments.nvim ]]
+	TodoFgFIX = function(self) return {fg = self.ErrorMsg.fg} end,
+	TodoFgHACK = function(self) return {fg = self.Todo.bg} end,
+	TodoFgNOTE = 'HintMsg',
+	TodoFgPERF = 'InfoMsg',
+	TodoFgTODO = {fg = cyan, style = 'italic'},
+	TodoFgWARN = function(self) return {fg = self.WarningMsg.fg} end,
+
+	TodoBgFIX = function(self) return {fg = black, bg = self.ErrorMsg.fg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgHACK = function(self) return {fg = black, bg = self.Todo.bg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgNOTE = function(self) return {fg = black, bg = self.Hint.bg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgPERF = function(self) return {fg = black, bg = self.Info.bg, style = {'bold', 'italic', 'nocombine'}} end,
+	TodoBgTODO = {fg = black, bg = cyan, style = {'bold', 'italic', 'nocombine'}},
+	TodoBgWARN = function(self) return {fg = black, bg = self.Warning.bg, style = {'bold', 'italic', 'nocombine'}} end,
+
+	TodoSignFIX  = 'TodoFgFIX',
+	TodoSignHACK = 'TodoFgHACK',
+	TodoSignNOTE = 'TodoFgNOTE',
+	TodoSignPERF = 'TodoFgPERF',
+	TodoSignTODO = 'TodoFgTODO',
+	TodoSignWARN = 'TodoFgWARN',
+
+		--[[ 4.4.14. trouble.nvim ]]
+		TroubleCount = function(self) return vim.tbl_extend('force', self.Number, {style = 'underline'}) end,
+
+			--[[ 4.4.12. LSPSaga ]]
+	DefinitionCount = 'Number',
+	DefinitionIcon  = 'Special',
+	ReferencesCount = 'Number',
+	ReferencesIcon  = 'DefinitionIcon',
+	TargetFileName  = 'Directory',
+	TargetWord = 'Title',
+
+
+
 	--[[ 4.4.10. vim-sandwhich ]]
 	OperatorSandwichChange = 'DiffText',
 
@@ -893,6 +959,57 @@ local highlight_groups = {
 	ReferencesIcon = 'DefinitionIcon',
 	TargetFileName = 'Directory',
 	TargetWord = 'Title',
+
+
+		--[[ 4.4.16. nvim-cmp ]]
+		CmpItemAbbr = 'Ignore',
+		CmpItemAbbrMatch = 'Underlined',
+		CmpItemAbbrMatchFuzzy = {fg = highlight_group_normal.fg, style = {'nocombine', 'underline'}},
+		CmpItemKindClass = 'CmpItemKindStruct',
+		CmpItemKindColor = 'Label',
+		CmpItemKindConstant = 'Constant',
+		CmpItemKindConstructor = 'CmpItemKindMethod',
+		CmpItemKind = 'Type',
+		CmpItemKindEnum = 'CmpItemKindStruct',
+		CmpItemKindEnumMember = 'CmpItemKindConstant',
+		CmpItemKindEvent = 'Repeat',
+		CmpItemKindField = 'Identifier',
+		CmpItemKindFile = 'Directory',
+		CmpItemKindFolder = 'CmpItemKindFile',
+		CmpItemKindFunction = 'Function',
+		CmpItemKindInterface = 'Type',
+		CmpItemKindKeyword = 'Keyword',
+		CmpItemKindMethod = 'CmpItemKindFunction',
+		CmpItemKindModule = 'Include',
+		CmpItemKindOperator = 'Operator',
+		CmpItemKindProperty = 'CmpItemKindField',
+		CmpItemKindReference = 'StorageClass',
+		CmpItemKindSnippet = 'Special',
+		CmpItemKindStruct = 'Structure',
+		CmpItemKindText = 'String',
+		CmpItemKindTypeParameter = 'Typedef',
+		CmpItemKindUnit = 'CmpItemKindStruct',
+		CmpItemKindValue = 'CmpItemKindConstant',
+		CmpItemKindVariable = 'Identifier',
+	
+			--[[ 4.4.18. nvim-tree ]]
+	NvimTreeGitDeleted = function(self) return {fg = self.DiffDelete.bg} end,
+	NvimTreeGitDirty = {fg = orange},
+	NvimTreeGitIgnored = 'Ignore',
+	NvimTreeGitMerge = 'NvimTreeGitRenamed',
+	NvimTreeGitNew = function(self) return {fg = self.DiffAdd.bg} end,
+	NvimTreeGitRenamed = function(self) return {fg = self.DiffChange.bg} end,
+	NvimTreeGitStaged = {fg = cyan},
+
+		--[[ 4.4.17. packer.nvim ]]
+		packerFail = 'ErrorMsg',
+		packerHash = 'Number',
+		packerPackageNotLoaded = 'Ignore',
+		packerStatusFail = 'Statement',
+		packerStatusSuccess = 'packerStatusFail',
+		packerSuccess = function(self) return {fg = green, style = self.packerFail.style} end,
+	
+
 }
 
 --[[ Step 5: Terminal Colors
@@ -1019,4 +1136,3 @@ require(vim.g.colors_name)(
 -- Thanks to Romain Lafourcade (https://github.com/romainl) for the original template (romainl/vim-rnb).
 -- vim: ft=lua
 
-EOF
