@@ -904,7 +904,7 @@ local highlight_groups = {
 
 	BufferVisible       = 'TabLine',
 	BufferVisibleIndex  = function(self) return {fg=self.InfoMsg.fg, bg=self.BufferVisible.bg} end,
-	BufferVisibleMod    = {fg=white, bg=gray_darker, style='italic'},
+	BufferVisibleMod    = {fg=white, bg=gray_da rker, style='italic'},
 	BufferVisibleSign   = 'BufferVisible',
 	BufferVisibleTarget = function(self)
 		local super = self.BufferVisibleMod
